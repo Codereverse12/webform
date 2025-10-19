@@ -1,0 +1,8 @@
+# Packages
+__pycache__
+
+.env
+venv
+uploads
+app.db
+webform.log*

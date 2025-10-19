@@ -1,0 +1,74 @@
+{% macro form_field(field, autofocus, grid) %}
+  {%- if field.type == 'BooleanField' %}
+  <div class="form-check {% if not grid %}mb-3{% endif %}">
+    {{ field(class='form-check-input') }}
+    {{ field.label(class='form-check-label') }}
+  </div>
+  {%- elif field.type == 'RadioField' %}
+    {{ field.label(class='form-label') }}
+    {%- for item in field %}
+    <div class="form-check{% if loop.last %} mb-3{% endif %}">
+      {{ item(class='form-check-input') }}
+      {{ item.label(class='form-check-label') }}
+    </div>
+    {%- endfor %}
+  {%- elif field.type == 'SelectField' %}
+    <div class="{% if grid %}col-md-12{% else %}mb-3{% endif %}">
+      {{ field.label(class='form-label') }}
+      {{ field(class='form-select mb-3') }}
+    </div>
+  {%- elif field.type == 'TextAreaField' %}
+  <div class="{% if grid %}col-md-12{% else %}mb-3{% endif %}">
+    {{ field.label(class='form-label') }}
+    {% if autofocus %}
+      {{ field(class='form-control' + (' is-invalid' if field.errors else ''), autofocus=True) }}
+    {% else %}
+      {{ field(class='form-control' + (' is-invalid' if field.errors else '')) }}
+    {% endif %}
+    {%- for error in field.errors %}
+    <div class="invalid-feedback">{{ error }}</div>
+    {%- endfor %}
+  </div>
+  {%- elif field.type == 'SubmitField' %}
+  {{ field(class='btn btn-primary mb-3') }}
+  {%- else %}
+  <div class="{% if grid %}col-md-6{% else %}mb-3{% endif %}">
+    {{ field.label(class='form-label') }}
+    {% if autofocus %}
+      {{ field(class='form-control' + (' is-invalid' if field.errors else ''), autofocus=True) }}
+    {% else %}
+      {{ field(class='form-control' + (' is-invalid' if field.errors else '')) }}
+    {% endif %}
+    {%- for error in field.errors %}
+    <div class="invalid-feedback">{{ error }}</div>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+{% endmacro %}
+
+{% macro quick_form(form, action="", method="post", id="", class="", include_file=False, novalidate=False, grid=False) %}
+<form
+  {%- if action != None %} action="{{ action }}"{% endif -%}
+  {%- if method %} method="{{ method }}"{% endif %}
+  {%- if id %} id="{{ id }}"{% endif -%}
+  {%- if class %} class="{{ class }}"{% endif -%}
+  {%- if include_file %} enctype="multipart/form-data"{% endif -%}
+  {%- if novalidate %} novalidate{% endif -%}>
+  {{ form.hidden_tag() }}
+  {%- for field, errors in form.errors.items() %}
+    {%- if form[field].widget.input_type == 'hidden' %}
+      {%- for error in errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+      {%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+
+  {% set ns = namespace(first_field=true) %}
+  {%- for field in form %}
+    {% if field.widget.input_type != 'hidden' -%}
+      {{ form_field(field, ns.first_field, grid) }}
+      {% set ns.first_field = false %}
+    {%- endif %}
+  {%- endfor %}  
+</form>
+{% endmacro %}

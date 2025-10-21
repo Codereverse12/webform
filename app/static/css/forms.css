@@ -7,9 +7,9 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: calc(100vh - 80px - 70px);
-    padding: 30px 20px;
-    overflow-y: auto;
+    min-height: auto;
+    padding: 0;
+    overflow-y: visible;
 }
 
 /* Form Card */

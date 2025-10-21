@@ -2,11 +2,39 @@
    ID Form Styles
    ============================================ */
 
+/* ID Form Wrapper */
+.id-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ID Form Header */
+.id-form-header {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* ID Form Two Column */
+.id-form-two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
 /* ID Form Card */
 .id-form-card {
-    width: 650px;
-    max-width: 95%;
     padding: 40px 45px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* ID Form Section */
@@ -159,7 +187,7 @@
 .id-form-submit {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    width: 100%;
 }
 
 .id-form-submit-btn {
@@ -187,10 +215,24 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .id-form-two-column {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
     .id-form-card {
-        width: 100%;
-        padding: 30px 25px;
+        padding: 30px 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .id-form-wrapper {
+        padding: 20px 15px;
+    }
+
+    .id-form-card {
+        padding: 25px 20px;
     }
 
     .id-form-row {

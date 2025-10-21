@@ -1,22 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="form-container">
-    <div class="form-card id-form-card">
+<div class="id-form-wrapper">
+    <div class="id-form-header">
         <h1 class="form-card-title">ID Information Form</h1>
         <p class="form-card-subtitle">Please fill out all required information for your digital ID application</p>
+    </div>
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-info" role="alert">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-        <form method="POST" novalidate enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
+    <form method="POST" novalidate enctype="multipart/form-data" class="id-form-two-column">
+        {{ form.hidden_tag() }}
 
+        <!-- Left Card -->
+        <div class="form-card id-form-card">
             <!-- Upload Section -->
             <div class="id-form-section">
                 <label class="id-form-label">Upload</label>
@@ -95,7 +98,10 @@
                     {% endif %}
                 </div>
             </div>
+        </div>
 
+        <!-- Right Card -->
+        <div class="form-card id-form-card">
             <!-- State Dropdown -->
             <div class="id-form-section">
                 <label class="id-form-label">State</label>
@@ -143,12 +149,12 @@
                 <input type="text" class="id-form-input" placeholder="Street Address" disabled>
                 <p class="form-helper-text">This field will be completed by administrative staff</p>
             </div>
+        </div>
+    </form>
 
-            <!-- Submit Button -->
-            <div class="id-form-submit">
-                {{ form.submit(class="id-form-submit-btn") }}
-            </div>
-        </form>
+    <!-- Submit Button (Full Width Below) -->
+    <div class="id-form-submit">
+        {{ form.submit(class="id-form-submit-btn") }}
     </div>
 </div>
 

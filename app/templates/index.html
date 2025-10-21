@@ -1,35 +1,146 @@
 {% extends "base.html" %}
-{% import 'bootstrap_wtf.html' as wtf %}
 
 {% block content %}
-    <h3>Set Link Expiration Time</h3>
-    <p class="lead">Please enter how long the link should remain active.</p>
-    {{ wtf.quick_form(form, class="row g-3", include_file=True, grid=True) }}
-   <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Link</th>
-                <th scope="col">Created At</th>
-                <th scope="col">End At</th>
-                <th scope="col">Status</th>
-            </tr>
-        </thead>
-        {% for link in links %}
-            {% include '_link.html' %}
-        {% endfor %}
-    </table>
-    <nav aria-label="Link navigation">
-        <ul class="pagination">
-            <li class="page-item{% if not prev_url %} disabled{% endif %}">
-                <a class="page-link" href="{{ prev_url }}">
-                    <span aria-hidden="true">&larr;</span> Back
-                </a>
-            </li>
-            <li class="page-item{% if not next_url %} disabled{% endif %}">
-                <a class="page-link" href="{{ next_url }}">
-                    Next <span aria-hidden="true">&rarr;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<div class="dashboard-container">
+    <!-- Set Link Expiration Time Section -->
+    <div class="dashboard-section">
+        <h2 class="section-title">Set Link Expiration Time</h2>
+        <p class="section-subtitle">Please enter how long the link should remain active.</p>
+
+        <form method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="form-section">
+                <div class="form-field">
+                    <label class="form-field-label">{{ form.weeks.label.text }}</label>
+                    {{ form.weeks(class="form-field-input", placeholder="0") }}
+                </div>
+                <div class="form-field">
+                    <label class="form-field-label">{{ form.days.label.text }}</label>
+                    {{ form.days(class="form-field-input", placeholder="0") }}
+                </div>
+                <div class="form-field">
+                    <label class="form-field-label">{{ form.hours.label.text }}</label>
+                    {{ form.hours(class="form-field-input", placeholder="0") }}
+                </div>
+                <div class="form-field">
+                    <label class="form-field-label">{{ form.minutes.label.text }}</label>
+                    {{ form.minutes(class="form-field-input", placeholder="0") }}
+                </div>
+            </div>
+
+            {{ form.submit(class="btn-generate-link") }}
+        </form>
+    </div>
+
+    <!-- Links Generated Section -->
+    <div class="dashboard-section">
+        <h2 class="section-title">Links Generated</h2>
+
+        {% if links %}
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Link</th>
+                    <th>Created At</th>
+                    <th>End At</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in links %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('main.form', link_id=link.id, _external=True) }}" class="table-link" data-url="{{ url_for('main.form', link_id=link.id, _external=True) }}" onclick="copyToClipboard(event, this)">
+                            ink.sh/{{ link.id[:6] }}
+                        </a>
+                    </td>
+                    <td>{{ moment(link.created_at).format('MMM DD, YYYY h:mm A') }}</td>
+                    <td>{{ moment(link.end_at).format('MMM DD, YYYY h:mm A') }}</td>
+                    <td>
+                        {% if link.used %}
+                            <span class="status-badge status-filled">Filled</span>
+                        {% elif link.is_active() %}
+                            <span class="status-badge status-active">Active</span>
+                        {% else %}
+                            <span class="status-badge status-expired">Expired</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        {% if prev_url or next_url %}
+        <div class="pagination-container">
+            {% if prev_url %}
+                <a href="{{ prev_url }}" class="pagination-btn">← Back</a>
+            {% else %}
+                <button class="pagination-btn" disabled>← Back</button>
+            {% endif %}
+
+            {% if next_url %}
+                <a href="{{ next_url }}" class="pagination-btn">Next →</a>
+            {% else %}
+                <button class="pagination-btn" disabled>Next →</button>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% else %}
+        <p style="text-align: center; color: #999; padding: 40px 0;">No links generated yet. Create one above!</p>
+        {% endif %}
+    </div>
+
+    <!-- New Users Added Section -->
+    <div class="dashboard-section">
+        <h2 class="section-title">New Users Added</h2>
+
+        {% set filled_links = links|selectattr('used')|list %}
+        {% if filled_links %}
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Link</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in filled_links %}
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                        <a href="{{ url_for('main.form', link_id=link.id, _external=True) }}" class="table-link">
+                            ink.sh/{{ link.id[:6] }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('main.view_form', form_id=link.id) }}" class="btn-view-form">View Form</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="text-align: center; color: #999; padding: 40px 0;">No users added yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    function copyToClipboard(event, element) {
+        event.preventDefault();
+        const url = element.getAttribute('data-url');
+        navigator.clipboard.writeText(url).then(function() {
+            const originalText = element.textContent;
+            element.textContent = 'Copied!';
+            setTimeout(function() {
+                element.textContent = originalText;
+            }, 1500);
+        });
+    }
+</script>
 {% endblock %}

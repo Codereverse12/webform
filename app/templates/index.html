@@ -138,9 +138,10 @@
             </thead>
             <tbody>
                 {% for link in filled_links %}
+                {% set form_data = get_form(link.id) %}
                 <tr>
-                    <td>-</td>
-                    <td>-</td>
+                    <td>{{ form_data.first_name if form_data else '-' }}</td>
+                    <td>{{ form_data.last_name if form_data else '-' }}</td>
                     <td>
                         <a href="{{ url_for('main.form', link_id=link.id, _external=True) }}" class="table-link">
                             ink.sh/{{ link.id[:6] }}

@@ -47,7 +47,11 @@ def index():
         if links.has_next else None
     prev_url = url_for('main.index', page=links.prev_num) \
         if links.has_prev else None
-    return render_template('index.html', title='Home', links=links.items, form=form, next_url=next_url, prev_url=prev_url)
+
+    def get_form(link_id):
+        return db.session.get(Form, link_id)
+
+    return render_template('index.html', title='Home', links=links.items, form=form, next_url=next_url, prev_url=prev_url, get_form=get_form)
 
 
 @bp.route('/user')

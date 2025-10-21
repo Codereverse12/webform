@@ -1,0 +1,245 @@
+/* ============================================
+   ThrottleX - Form Styles
+   ============================================ */
+
+/* Form Container */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 72px - 106px);
+    padding: 40px 20px;
+}
+
+/* Form Card */
+.form-card {
+    width: 783px;
+    background-color: #FFFFFF;
+    border-radius: 44px;
+    padding: 60px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 100%;
+}
+
+/* Form Heading */
+.form-card-title {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: #000000;
+    margin: 0 0 12px 0;
+    text-align: center;
+}
+
+/* Form Subtitle */
+.form-card-subtitle {
+    font-family: 'Karla', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #666666;
+    text-align: center;
+    margin: 0 0 40px 0;
+    line-height: 1.5;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group:last-of-type {
+    margin-bottom: 40px;
+}
+
+/* Form Label */
+.form-label {
+    font-family: 'Karla', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Form Input */
+.form-input {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #F5F5F5;
+    border: 1px solid #E0E0E0;
+    border-radius: 26px;
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    color: #333333;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    background-color: #FFFFFF;
+    border-color: #0066CC;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.form-input::placeholder {
+    color: #999999;
+}
+
+/* Form Submit Button */
+.form-submit-btn {
+    width: 350px;
+    height: 70px;
+    background-color: #0066CC;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 26px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.form-submit-btn:hover {
+    background-color: #0052A3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+}
+
+.form-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Form Link */
+.form-link {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.form-link a {
+    color: #0066CC;
+    text-decoration: none;
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.form-link a:hover {
+    color: #0052A3;
+    text-decoration: underline;
+}
+
+/* Error Messages */
+.form-error {
+    color: #DC3545;
+    font-family: 'Karla', sans-serif;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.form-input.is-invalid {
+    border-color: #DC3545;
+    background-color: #FFF5F5;
+}
+
+.form-input.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    border-color: #DC3545;
+}
+
+/* Success Messages */
+.alert-success {
+    background-color: #D4EDDA;
+    border: 1px solid #C3E6CB;
+    color: #155724;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+}
+
+/* Info Messages */
+.alert-info {
+    background-color: #D1ECF1;
+    border: 1px solid #BEE5EB;
+    color: #0C5460;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 900px) {
+    .form-card {
+        width: 90%;
+        padding: 40px;
+    }
+
+    .form-card-title {
+        font-size: 28px;
+    }
+
+    .form-card-subtitle {
+        font-size: 14px;
+    }
+
+    .form-submit-btn {
+        width: 100%;
+        height: 60px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        min-height: auto;
+        padding: 20px 15px;
+    }
+
+    .form-card {
+        width: 100%;
+        padding: 30px 20px;
+        border-radius: 24px;
+    }
+
+    .form-card-title {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .form-card-subtitle {
+        font-size: 13px;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-input {
+        padding: 12px 14px;
+        font-size: 13px;
+        border-radius: 20px;
+    }
+
+    .form-submit-btn {
+        width: 100%;
+        height: 50px;
+        font-size: 13px;
+        border-radius: 20px;
+    }
+
+    .form-label {
+        font-size: 12px;
+    }
+}
+

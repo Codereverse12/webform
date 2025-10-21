@@ -1,0 +1,36 @@
+{% macro render_field(field, class_="", placeholder="") %}
+    {% if field.type == 'BooleanField' %}
+        <div class="form-group">
+            <div class="form-check">
+                {{ field(class_="form-check-input") }}
+                <label class="form-check-label" for="{{ field.id }}">
+                    {{ field.label.text }}
+                </label>
+            </div>
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <div class="form-error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% elif field.type == 'SubmitField' %}
+        {{ field(class_="form-submit-btn") }}
+    {% else %}
+        <div class="form-group">
+            {% if field.label %}
+                <label class="form-label" for="{{ field.id }}">{{ field.label.text }}</label>
+            {% endif %}
+            {% if field.type == 'TextAreaField' %}
+                {{ field(class_="form-input " + class_, placeholder=placeholder, rows="4") }}
+            {% else %}
+                {{ field(class_="form-input " + class_, placeholder=placeholder) }}
+            {% endif %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <div class="form-error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endmacro %}
+

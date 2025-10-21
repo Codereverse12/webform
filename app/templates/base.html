@@ -30,10 +30,7 @@
                 {% if current_user.is_anonymous %}
                     <a href="{{ url_for('auth.login') }}" class="btn-signup">Sign Up</a>
                 {% else %}
-                    <div class="user-menu">
-                        <a href="{{ url_for('main.user') }}" class="user-link">Profile</a>
-                        <a href="{{ url_for('auth.logout') }}" class="btn-signup">Logout</a>
-                    </div>
+                    <a href="{{ url_for('auth.logout') }}" class="btn-signup">Logout</a>
                 {% endif %}
             </div>
         </div>

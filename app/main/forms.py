@@ -26,18 +26,42 @@ class IDForm(FlaskForm):
     first_name = StringField("First Name", validators=[DataRequired(), Length(max=50)])
     middle_name = StringField("Middle Name", validators=[Optional(), Length(max=50)])
     last_name = StringField("Last Name", validators=[DataRequired(), Length(max=50)])
-    eye_color = StringField("Eye Color", validators=[DataRequired(), Length(max=30)])
-    hair_color = StringField("Hair Color", validators=[DataRequired(), Length(max=30)])
+    eye_color = SelectField(
+        "Eye Color",
+        choices=[
+            ("", "Select eye color"),
+            ("brown", "Brown"),
+            ("blue", "Blue"),
+            ("green", "Green"),
+            ("hazel", "Hazel"),
+            ("gray", "Gray"),
+            ("black", "Black")
+        ],
+        validators=[DataRequired()]
+    )
+    hair_color = SelectField(
+        "Hair Color",
+        choices=[
+            ("", "Select hair color"),
+            ("black", "Black"),
+            ("brown", "Brown"),
+            ("blonde", "Blonde"),
+            ("red", "Red"),
+            ("gray", "Gray"),
+            ("white", "White")
+        ],
+        validators=[DataRequired()]
+    )
     address = StringField("Address", validators=[DataRequired(), Length(max=200)])
     date_of_birth = DateField("Date of Birth", format='%Y-%m-%d', validators=[DataRequired()])
     height = DecimalField("Height (in cm)", validators=[DataRequired(), NumberRange(min=0)])
     weight = DecimalField("Weight (in kg)", validators=[DataRequired(), NumberRange(min=0)])
     gender = SelectField(
         "Gender",
-        choices=[("male", "Male"), ("female", "Female"), ("other", "Other")],
+        choices=[("", "Select gender"), ("male", "Male"), ("female", "Female"), ("other", "Other")],
         validators=[DataRequired()]
     )
-    submit = SubmitField("Submit")
+    submit = SubmitField("Submit Application")
 
 
     def validate_image(self, image):

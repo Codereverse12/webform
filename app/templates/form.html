@@ -34,35 +34,35 @@
                 {% endif %}
             </div>
 
-            <!-- Name Fields (3 columns) -->
-            <div class="id-form-row">
-                <div class="id-form-field">
-                    <label class="id-form-label">First Name</label>
-                    {{ form.first_name(class="id-form-input", placeholder="Enter your first name") }}
-                    {% if form.first_name.errors %}
-                        {% for error in form.first_name.errors %}
-                            <div class="form-error">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="id-form-field">
-                    <label class="id-form-label">Middle Name</label>
-                    {{ form.middle_name(class="id-form-input", placeholder="Enter your middle name") }}
-                    {% if form.middle_name.errors %}
-                        {% for error in form.middle_name.errors %}
-                            <div class="form-error">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="id-form-field">
-                    <label class="id-form-label">Last Name</label>
-                    {{ form.last_name(class="id-form-input", placeholder="Enter your last name") }}
-                    {% if form.last_name.errors %}
-                        {% for error in form.last_name.errors %}
-                            <div class="form-error">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
+            <!-- Name Fields (Vertical) -->
+            <div class="id-form-field">
+                <label class="id-form-label">First Name</label>
+                {{ form.first_name(class="id-form-input", placeholder="Enter your first name") }}
+                {% if form.first_name.errors %}
+                    {% for error in form.first_name.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Middle Name</label>
+                {{ form.middle_name(class="id-form-input", placeholder="Enter your middle name") }}
+                {% if form.middle_name.errors %}
+                    {% for error in form.middle_name.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Last Name</label>
+                {{ form.last_name(class="id-form-input", placeholder="Enter your last name") }}
+                {% if form.last_name.errors %}
+                    {% for error in form.last_name.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
             </div>
 
             <!-- Height, Weight, Gender (3 columns) -->

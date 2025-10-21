@@ -67,6 +67,19 @@
     display: block;
 }
 
+/* View Form Value */
+.view-form-value {
+    font-family: 'Karla', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    margin: 0;
+    padding: 12px 16px;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+    border: 1px solid #D0D0D0;
+}
+
 .required {
     color: #E74C3C;
     margin-left: 2px;
@@ -202,6 +215,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     min-width: 250px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .id-form-submit-btn:hover {

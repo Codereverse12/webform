@@ -28,7 +28,7 @@
             </div>
             <div class="header-right">
                 {% if current_user.is_anonymous %}
-                    <a href="{{ url_for('auth.login') }}" class="btn-signup">Sign Up</a>
+                    <a href="{{ url_for('auth.login') }}" class="btn-signup">Login</a>
                 {% else %}
                     <a href="{{ url_for('auth.logout') }}" class="btn-signup">Logout</a>
                 {% endif %}

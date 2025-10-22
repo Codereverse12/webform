@@ -1,7 +1,33 @@
 {% extends "base.html" %}
-{% import 'bootstrap_wtf.html' as wtf %}
+{% import 'form_macros.html' as forms %}
 
 {% block content %}
-    <h1>Register</h1>
-    {{ wtf.quick_form(form) }}
+<div class="form-container">
+    <div class="form-card">
+        <h1 class="form-card-title">Create Account</h1>
+        <p class="form-card-subtitle">Create an account to enjoy all the services without any ads for free!</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            {{ forms.render_field(form.email, placeholder="Enter your email address") }}
+            {{ forms.render_field(form.password, placeholder="Enter your password") }}
+            {{ forms.render_field(form.password2, placeholder="Confirm your password") }}
+
+            {{ forms.render_field(form.submit) }}
+        </form>
+
+        <div class="form-link">
+            Already have an account? <a href="{{ url_for('auth.login') }}">Sign In</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

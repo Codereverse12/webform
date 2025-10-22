@@ -1,29 +1,85 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-            <div class="card p-4">
-                <h4 class="mb-3 text-center">View Submitted Form</h4>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a href="{{ url_for('main.upload', filename=form.id) }}" data-toggle="lightbox" data-caption="{{ form.first_name }}">
-	                        <img src="{{ url_for('main.upload', filename=form.id) }}" class="img-fluid" width="500px" height="500px">
-                        </a>
-                    </li>
-                    <li class="list-group-item"><strong>First Name:</strong> {{ form.first_name }}</li>
-                    <li class="list-group-item"><strong>Middle Name:</strong> {{ form.middle_name if form.middle_name else ''}}</li>
-                    <li class="list-group-item"><strong>Last Name:</strong> {{ form.last_name }}</li>
-                    <li class="list-group-item"><strong>Gender:</strong> {{ form.gender }}</li>
-                    <li class="list-group-item"><strong>Eye Color:</strong> {{ form.eye_color }}</li>
-                    <li class="list-group-item"><strong>Hair Color:</strong> {{ form.hair_color }}</li>
-                    <li class="list-group-item"><strong>Address:</strong> {{ form.address }}</li>
-                    <li class="list-group-item"><strong>Date of Birth:</strong> {{ form.date_of_birth.strftime('%Y-%m-%d') }}</li>
-                    <li class="list-group-item"><strong>Height (in cm):</strong> {{ form.height }}</li>
-                    <li class="list-group-item"><strong>Weight (in kg):</strong> {{ form.weight }}</li>
-                    <li class="list-group-item"><strong>Submitted At:</strong> {{ moment(form.submitted_at).format('LLLL') }}</li>
-                </ul>
+<div class="id-form-wrapper">
+    <div class="id-form-header">
+        <h1 class="form-card-title">View Submitted Form</h1>
+    </div>
+
+    <!-- Image Section (Full Width) -->
+    <div class="form-card id-form-card" style="margin-bottom: 2rem;">
+        <a href="{{ url_for('main.upload', filename=form.id) }}" data-toggle="lightbox" data-caption="{{ form.first_name }}">
+            <img src="{{ url_for('main.upload', filename=form.id) }}" class="img-fluid" width="500px" height="500px">
+        </a>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="id-form-two-column">
+        <!-- Left Card -->
+        <div class="form-card id-form-card">
+            <div class="id-form-field">
+                <label class="id-form-label">First Name</label>
+                <p class="view-form-value">{{ form.first_name }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Middle Name</label>
+                <p class="view-form-value">{{ form.middle_name if form.middle_name else '' }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Last Name</label>
+                <p class="view-form-value">{{ form.last_name }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Gender</label>
+                <p class="view-form-value">{{ form.gender }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Eye Color</label>
+                <p class="view-form-value">{{ form.eye_color }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Hair Color</label>
+                <p class="view-form-value">{{ form.hair_color }}</p>
+            </div>
+        </div>
+
+        <!-- Right Card -->
+        <div class="form-card id-form-card">
+            <div class="id-form-field">
+                <label class="id-form-label">Address</label>
+                <p class="view-form-value">{{ form.address }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Date of Birth</label>
+                <p class="view-form-value">{{ form.date_of_birth.strftime('%Y-%m-%d') }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Height (in cm)</label>
+                <p class="view-form-value">{{ form.height }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Weight (in kg)</label>
+                <p class="view-form-value">{{ form.weight }}</p>
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Submitted At</label>
+                <p class="view-form-value">{{ moment(form.submitted_at).format('LLLL') }}</p>
             </div>
         </div>
     </div>
+
+    <!-- Submit Button (Centered) -->
+    <div class="id-form-submit">
+        <a href="{{ url_for('main.index') }}" class="id-form-submit-btn">Back to Home</a>
+    </div>
+</div>
 {% endblock %}

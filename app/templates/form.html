@@ -1,13 +1,174 @@
 {% extends "base.html" %}
-{% import 'bootstrap_wtf.html' as wtf %}
 
 {% block content %}
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-            <div class="card p-4">
-                <h4 class="mb-3 text-center">Fill Out the Form</h4>
-                {{ wtf.quick_form(form, class="row g-3", include_file=True, grid=True) }}
+<div class="id-form-wrapper">
+    <div class="id-form-header">
+        <h1 class="form-card-title">ID Information Form</h1>
+        <p class="form-card-subtitle">Please fill out all required information for your digital ID application</p>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" novalidate enctype="multipart/form-data" class="id-form-two-column">
+        {{ form.hidden_tag() }}
+
+        <!-- Left Card -->
+        <div class="form-card id-form-card">
+            <!-- Upload Section -->
+            <div class="id-form-section">
+                <label class="id-form-label">Upload</label>
+                <div class="file-upload-wrapper">
+                    {{ form.image(class="file-input", accept="image/*") }}
+                    <label for="{{ form.image.id }}" class="file-upload-label">
+                        Choose File
+                    </label>
+                    <span class="file-name">No file chosen</span>
+                </div>
+                {% if form.image.errors %}
+                    {% for error in form.image.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Name Fields (Vertical) -->
+            <div class="id-form-field">
+                <label class="id-form-label">First Name</label>
+                {{ form.first_name(class="id-form-input", placeholder="Enter your first name") }}
+                {% if form.first_name.errors %}
+                    {% for error in form.first_name.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Middle Name</label>
+                {{ form.middle_name(class="id-form-input", placeholder="Enter your middle name") }}
+                {% if form.middle_name.errors %}
+                    {% for error in form.middle_name.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="id-form-field">
+                <label class="id-form-label">Last Name</label>
+                {{ form.last_name(class="id-form-input", placeholder="Enter your last name") }}
+                {% if form.last_name.errors %}
+                    {% for error in form.last_name.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Height, Weight, Gender (3 columns) -->
+            <div class="id-form-row">
+                <div class="id-form-field">
+                    <label class="id-form-label">Height <span class="required">*</span></label>
+                    {{ form.height(class="id-form-input", placeholder="5'8\"") }}
+                    {% if form.height.errors %}
+                        {% for error in form.height.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="id-form-field">
+                    <label class="id-form-label">Weight <span class="required">*</span></label>
+                    {{ form.weight(class="id-form-input", placeholder="150 lbs") }}
+                    {% if form.weight.errors %}
+                        {% for error in form.weight.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="id-form-field">
+                    <label class="id-form-label">Gender <span class="required">*</span></label>
+                    {{ form.gender(class="id-form-select") }}
+                    {% if form.gender.errors %}
+                        {% for error in form.gender.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
         </div>
+
+        <!-- Right Card -->
+        <div class="form-card id-form-card">
+            <!-- State Dropdown -->
+            <div class="id-form-section">
+                <label class="id-form-label">State</label>
+                <select class="id-form-select">
+                    <option>Select state</option>
+                </select>
+            </div>
+
+            <!-- Eye Color Dropdown -->
+            <div class="id-form-section">
+                <label class="id-form-label">Eye Color</label>
+                {{ form.eye_color(class="id-form-select") }}
+                {% if form.eye_color.errors %}
+                    {% for error in form.eye_color.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Hair Color Dropdown -->
+            <div class="id-form-section">
+                <label class="id-form-label">Hair Color</label>
+                {{ form.hair_color(class="id-form-select") }}
+                {% if form.hair_color.errors %}
+                    {% for error in form.hair_color.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="id-form-section">
+                <label class="id-form-label">Birthday (the date you want displayed on your ID)</label>
+                {{ form.date_of_birth(class="id-form-input", type="date") }}
+                {% if form.date_of_birth.errors %}
+                    {% for error in form.date_of_birth.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Address (Disabled) -->
+            <div class="id-form-section">
+                <label class="id-form-label">Street Address</label>
+                <input type="text" class="id-form-input" placeholder="Street Address" disabled>
+                <p class="form-helper-text">This field will be completed by administrative staff</p>
+            </div>
+        </div>
+    </form>
+
+    <!-- Submit Button (Full Width Below) -->
+    <div class="id-form-submit">
+        {{ form.submit(class="id-form-submit-btn") }}
     </div>
+</div>
+
+<script>
+    // File upload label update
+    const fileInput = document.querySelector('.file-input');
+    const fileName = document.querySelector('.file-name');
+
+    if (fileInput) {
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                fileName.textContent = this.files[0].name;
+            }
+        });
+    }
+</script>
 {% endblock %}

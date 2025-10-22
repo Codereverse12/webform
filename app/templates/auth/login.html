@@ -1,8 +1,29 @@
 {% extends "base.html" %}
-{% import 'bootstrap_wtf.html' as wtf %}
+{% import 'form_macros.html' as forms %}
 
 {% block content %}
-    <h1>Sign In</h1>
-    {{ wtf.quick_form(form) }}
-    <p>New User? <a href="{{ url_for('auth.register') }}">Click to Register!</a></p>
+<div class="form-container">
+    <div class="form-card">
+        <h1 class="form-card-title">Sign In</h1>
+        <p class="form-card-subtitle">Welcome back! Sign in to your account to continue.</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            {{ forms.render_field(form.email, placeholder="Enter your email address") }}
+            {{ forms.render_field(form.password, placeholder="Enter your password") }}
+            {{ forms.render_field(form.remember_me) }}
+
+            {{ forms.render_field(form.submit) }}
+        </form>
+    </div>
+</div>
 {% endblock %}

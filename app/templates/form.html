@@ -149,13 +149,54 @@
                 <input type="text" class="id-form-input" placeholder="Street Address" disabled>
                 <p class="form-helper-text">This field will be completed by administrative staff</p>
             </div>
+            <!-- City and Zip Code -->
+            <div class="id-form-row">
+                <div class="id-form-field">
+                    <label class="id-form-label">City</label>
+                    {{ form.city(class="id-form-input", placeholder="City") }}
+                    {% if form.city.errors %}
+                        {% for error in form.city.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="id-form-field">
+                    <label class="id-form-label">Zip Code</label>
+                    {{ form.zip_code(class="id-form-input", placeholder="ZIP/Postal Code") }}
+                    {% if form.zip_code.errors %}
+                        {% for error in form.zip_code.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Organ Donor and Restrictions -->
+            <div class="id-form-row">
+                <div class="id-form-field">
+                    <label class="id-form-label">Organ Donor</label>
+                    {{ form.organ_donor() }}
+                    {% if form.organ_donor.errors %}
+                        {% for error in form.organ_donor.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="id-form-field">
+                    <label class="id-form-label">Restrictions (Corrective Lenses)</label>
+                    {{ form.restrictions_corrective_lenses() }}
+                    {% if form.restrictions_corrective_lenses.errors %}
+                        {% for error in form.restrictions_corrective_lenses.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- Submit Button (Full Width Below) -->
+        <div class="id-form-submit">
+            {{ form.submit(class="id-form-submit-btn") }}
         </div>
     </form>
-
-    <!-- Submit Button (Full Width Below) -->
-    <div class="id-form-submit">
-        {{ form.submit(class="id-form-submit-btn") }}
-    </div>
 </div>
 
 <script>

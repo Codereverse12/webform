@@ -78,8 +78,8 @@
 .form-field-input:focus {
     outline: none;
     background-color: #FFFFFF;
-    border-color: #0066CC;
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    border-color: #FF7A00;
+    box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.15);
 }
 
 .form-field-input::placeholder {
@@ -90,7 +90,7 @@
 .btn-generate-link {
     width: 100%;
     padding: 14px 20px;
-    background-color: #0066CC;
+    background-color: #FF7A00;
     color: #FFFFFF;
     border: none;
     border-radius: 8px;
@@ -103,9 +103,9 @@
 }
 
 .btn-generate-link:hover {
-    background-color: #0052A3;
+    background-color: #CC6200;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 122, 0, 0.3);
 }
 
 .btn-generate-link:active {
@@ -154,14 +154,14 @@
 
 /* Table Link */
 .table-link {
-    color: #0066CC;
+    color: #FF7A00;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .table-link:hover {
-    color: #0052A3;
+    color: #CC6200;
     text-decoration: underline;
 }
 
@@ -194,7 +194,7 @@
 /* View Form Button */
 .btn-view-form {
     padding: 8px 16px;
-    background-color: #0066CC;
+    background-color: #FF7A00;
     color: #FFFFFF;
     border: none;
     border-radius: 6px;
@@ -208,9 +208,9 @@
 }
 
 .btn-view-form:hover {
-    background-color: #0052A3;
+    background-color: #CC6200;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.25);
 }
 
 /* ============================================
@@ -239,13 +239,13 @@
 
 .pagination-btn:hover {
     background-color: #E8E8E8;
-    border-color: #0066CC;
+    border-color: #FF7A00;
 }
 
 .pagination-btn.active {
-    background-color: #0066CC;
+    background-color: #FF7A00;
     color: #FFFFFF;
-    border-color: #0066CC;
+    border-color: #FF7A00;
 }
 
 /* ============================================

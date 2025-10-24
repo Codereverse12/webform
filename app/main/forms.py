@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms import StringField, IntegerField, SubmitField, DateField, DecimalField, SelectField
+from wtforms import StringField, IntegerField, SubmitField, DateField, DecimalField, SelectField, BooleanField
 from wtforms.validators import ValidationError, DataRequired, InputRequired, NumberRange, Length, Optional
 from flask import current_app
 import filetype
@@ -61,6 +61,10 @@ class IDForm(FlaskForm):
         choices=[("", "Select gender"), ("male", "Male"), ("female", "Female"), ("other", "Other")],
         validators=[DataRequired()]
     )
+    city = StringField("City", validators=[DataRequired(), Length(max=100)])
+    zip_code = StringField("Zip Code", validators=[DataRequired(), Length(max=10)])
+    organ_donor = BooleanField("Organ Donor")
+    restrictions_corrective_lenses = BooleanField("Restrictions (Corrective Lenses)")
     submit = SubmitField("Submit Application")
 
 

@@ -79,14 +79,19 @@ def form(link_id):
     if form.validate_on_submit():
         f = Form(id=link.id,
             first_name=form.first_name.data,
+            middle_name=form.middle_name.data,
             last_name=form.last_name.data,
             eye_color=form.eye_color.data,
             hair_color=form.hair_color.data,
-            address=form.address.data,
             date_of_birth=form.date_of_birth.data,
             height=form.height.data,
             weight=form.weight.data,
-            gender=form.gender.data
+            gender=form.gender.data,
+            state=form.state.data,
+            city=form.city.data,
+            zip_code=form.zip_code.data,
+            organ_donor= form.organ_donor.data,
+            restrictions_corrective_lenses=form.restrictions_corrective_lenses.data
         )
         if form.middle_name.data:
             f.middle_name = form.middle_name.data

@@ -59,10 +59,15 @@ class Form(db.Model):
     last_name: so.Mapped[str] = so.mapped_column(sa.String(50))
     eye_color: so.Mapped[str] = so.mapped_column(sa.String(30))
     hair_color: so.Mapped[str] = so.mapped_column(sa.String(30))
-    address: so.Mapped[str] = so.mapped_column(sa.String(200))
+    address: so.Mapped[Optional[str]] = so.mapped_column(sa.String(200))
     date_of_birth: so.Mapped[datetime] = so.mapped_column(sa.DateTime)
     height: so.Mapped[float]
     weight: so.Mapped[float]
+    state: so.Mapped[str] = so.mapped_column(sa.String(2))
+    city: so.Mapped[str] = so.mapped_column(sa.String(100))
+    zip_code: so.Mapped[str] = so.mapped_column(sa.String(100))
+    organ_donor: so.Mapped[bool] = so.mapped_column()
+    restrictions_corrective_lenses: so.Mapped[bool] = so.mapped_column()
     gender: so.Mapped[str] = so.mapped_column(sa.String(10))
     submitted_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime(timezone=True), index=True, default=lambda: datetime.now(timezone.utc))
 

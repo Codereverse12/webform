@@ -13,67 +13,94 @@
         </a>
     </div>
 
-    <!-- Two Column Layout -->
-    <div class="id-form-two-column">
-        <!-- Left Card -->
-        <div class="form-card id-form-card">
-            <div class="id-form-field">
-                <label class="id-form-label">First Name</label>
-                <p class="view-form-value">{{ form.first_name }}</p>
-            </div>
-
-            <div class="id-form-field">
-                <label class="id-form-label">Middle Name</label>
-                <p class="view-form-value">{{ form.middle_name if form.middle_name else '' }}</p>
-            </div>
-
-            <div class="id-form-field">
-                <label class="id-form-label">Last Name</label>
-                <p class="view-form-value">{{ form.last_name }}</p>
-            </div>
-
-            <div class="id-form-field">
-                <label class="id-form-label">Gender</label>
-                <p class="view-form-value">{{ form.gender }}</p>
-            </div>
-
-            <div class="id-form-field">
-                <label class="id-form-label">Eye Color</label>
-                <p class="view-form-value">{{ form.eye_color }}</p>
-            </div>
-
-            <div class="id-form-field">
-                <label class="id-form-label">Hair Color</label>
-                <p class="view-form-value">{{ form.hair_color }}</p>
-            </div>
+    <!-- Single Info Card -->
+    <div class="form-card id-form-card">
+        <!-- Names (vertical) -->
+        <div class="id-form-field">
+            <label class="id-form-label">First Name</label>
+            <p class="view-form-value">{{ form.first_name }}</p>
         </div>
 
-        <!-- Right Card -->
-        <div class="form-card id-form-card">
-            <div class="id-form-field">
-                <label class="id-form-label">Address</label>
-                <p class="view-form-value">{{ form.address }}</p>
-            </div>
+        <div class="id-form-field">
+            <label class="id-form-label">Middle Name</label>
+            <p class="view-form-value">{{ form.middle_name if form.middle_name else '' }}</p>
+        </div>
 
-            <div class="id-form-field">
-                <label class="id-form-label">Date of Birth</label>
-                <p class="view-form-value">{{ form.date_of_birth.strftime('%Y-%m-%d') }}</p>
-            </div>
+        <div class="id-form-field">
+            <label class="id-form-label">Last Name</label>
+            <p class="view-form-value">{{ form.last_name }}</p>
+        </div>
 
+        <!-- Height, Weight, Gender (3 columns) -->
+        <div class="id-form-row">
             <div class="id-form-field">
                 <label class="id-form-label">Height (in cm)</label>
                 <p class="view-form-value">{{ form.height }}</p>
             </div>
-
             <div class="id-form-field">
                 <label class="id-form-label">Weight (in kg)</label>
                 <p class="view-form-value">{{ form.weight }}</p>
             </div>
-
             <div class="id-form-field">
-                <label class="id-form-label">Submitted At</label>
-                <p class="view-form-value">{{ moment(form.submitted_at).format('LLLL') }}</p>
+                <label class="id-form-label">Gender</label>
+                <p class="view-form-value">{{ form.gender }}</p>
             </div>
+        </div>
+
+        <!-- State, Eye Color, Hair Color (sections) -->
+        <div class="id-form-section">
+            <label class="id-form-label">State</label>
+            <p class="view-form-value">{{ form.state }}</p>
+        </div>
+        <div class="id-form-section">
+            <label class="id-form-label">Eye Color</label>
+            <p class="view-form-value">{{ form.eye_color }}</p>
+        </div>
+        <div class="id-form-section">
+            <label class="id-form-label">Hair Color</label>
+            <p class="view-form-value">{{ form.hair_color }}</p>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="id-form-section">
+            <label class="id-form-label">Birthday (the date you want displayed on your ID)</label>
+            <p class="view-form-value">{{ form.date_of_birth.strftime('%Y-%m-%d') }}</p>
+        </div>
+
+        <!-- Address -->
+        <div class="id-form-section">
+            <label class="id-form-label">Street Address</label>
+            <p class="view-form-value">{{ form.address }}</p>
+        </div>
+
+        <!-- City and Zip Code (2 columns) -->
+        <div class="id-form-row">
+            <div class="id-form-field">
+                <label class="id-form-label">City</label>
+                <p class="view-form-value">{{ form.city }}</p>
+            </div>
+            <div class="id-form-field">
+                <label class="id-form-label">Zip Code</label>
+                <p class="view-form-value">{{ form.zip_code }}</p>
+            </div>
+        </div>
+
+        <!-- Organ Donor and Restrictions (2 columns) -->
+        <div class="id-form-row">
+            <div class="id-form-field">
+                <label class="id-form-label">Organ Donor</label>
+                <p class="view-form-value">{{ 'Yes' if form.organ_donor else 'No' }}</p>
+            </div>
+            <div class="id-form-field">
+                <label class="id-form-label">Restrictions (Corrective Lenses)</label>
+                <p class="view-form-value">{{ 'Yes' if form.restrictions_corrective_lenses else 'No' }}</p>
+            </div>
+        </div>
+
+        <!-- Submitted At -->
+        <div class="id-form-section">
+            <label class="id-form-label">Submitted At</label>
+            <p class="view-form-value">{{ moment(form.submitted_at).format('LLLL') }}</p>
         </div>
     </div>
 

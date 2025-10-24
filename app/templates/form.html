@@ -15,15 +15,15 @@
         {% endif %}
     {% endwith %}
 
-    <form method="POST" novalidate enctype="multipart/form-data" class="id-form-two-column">
+    <form method="POST" novalidate enctype="multipart/form-data">
         {{ form.hidden_tag() }}
 
         <!-- Left Card -->
         <div class="form-card id-form-card">
             <!-- Upload Section -->
             <div class="id-form-section">
-                <label class="id-form-label">Upload</label>
-                <div class="file-upload-wrapper">
+                <label class="id-form-label">Upload <span class="required">*</span></label>
+                <div class="file-upload-wrapper"> 
                     {{ form.image(class="file-input", accept="image/*") }}
                     <label for="{{ form.image.id }}" class="file-upload-label">
                         Choose File
@@ -39,7 +39,7 @@
 
             <!-- Name Fields (Vertical) -->
             <div class="id-form-field">
-                <label class="id-form-label">First Name</label>
+                <label class="id-form-label">First Name <span class="required">*</span></label>
                 {{ form.first_name(class="id-form-input", placeholder="Enter your first name") }}
                 {% if form.first_name.errors %}
                     {% for error in form.first_name.errors %}
@@ -59,7 +59,7 @@
             </div>
 
             <div class="id-form-field">
-                <label class="id-form-label">Last Name</label>
+                <label class="id-form-label">Last Name <span class="required">*</span></label>
                 {{ form.last_name(class="id-form-input", placeholder="Enter your last name") }}
                 {% if form.last_name.errors %}
                     {% for error in form.last_name.errors %}
@@ -98,21 +98,24 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
+        
 
         <!-- Right Card -->
-        <div class="form-card id-form-card">
+        
             <!-- State Dropdown -->
             <div class="id-form-section">
-                <label class="id-form-label">State</label>
-                <select class="id-form-select">
-                    <option>Select state</option>
-                </select>
+                <label class="id-form-label">State <span class="required">*</span></label>
+                {{ form.state(class="id-form-select") }}
+                {% if form.state.errors %}
+                    {% for error in form.state.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
             </div>
 
             <!-- Eye Color Dropdown -->
             <div class="id-form-section">
-                <label class="id-form-label">Eye Color</label>
+                <label class="id-form-label">Eye Color <span class="required">*</span></label>
                 {{ form.eye_color(class="id-form-select") }}
                 {% if form.eye_color.errors %}
                     {% for error in form.eye_color.errors %}
@@ -123,7 +126,7 @@
 
             <!-- Hair Color Dropdown -->
             <div class="id-form-section">
-                <label class="id-form-label">Hair Color</label>
+                <label class="id-form-label">Hair Color <span class="required">*</span></label>
                 {{ form.hair_color(class="id-form-select") }}
                 {% if form.hair_color.errors %}
                     {% for error in form.hair_color.errors %}
@@ -134,7 +137,7 @@
 
             <!-- Date of Birth -->
             <div class="id-form-section">
-                <label class="id-form-label">Birthday (the date you want displayed on your ID)</label>
+                <label class="id-form-label">Birthday (the date you want displayed on your ID) <span class="required">*</span></label>
                 {{ form.date_of_birth(class="id-form-input", type="date") }}
                 {% if form.date_of_birth.errors %}
                     {% for error in form.date_of_birth.errors %}
@@ -152,7 +155,7 @@
             <!-- City and Zip Code -->
             <div class="id-form-row">
                 <div class="id-form-field">
-                    <label class="id-form-label">City</label>
+                    <label class="id-form-label">City <span class="required">*</span></label>
                     {{ form.city(class="id-form-input", placeholder="City") }}
                     {% if form.city.errors %}
                         {% for error in form.city.errors %}
@@ -161,7 +164,7 @@
                     {% endif %}
                 </div>
                 <div class="id-form-field">
-                    <label class="id-form-label">Zip Code</label>
+                    <label class="id-form-label">Zip Code <span class="required">*</span></label>
                     {{ form.zip_code(class="id-form-input", placeholder="ZIP/Postal Code") }}
                     {% if form.zip_code.errors %}
                         {% for error in form.zip_code.errors %}

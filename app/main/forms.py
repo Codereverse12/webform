@@ -52,13 +52,70 @@ class IDForm(FlaskForm):
         ],
         validators=[DataRequired()]
     )
-    address = StringField("Address", validators=[DataRequired(), Length(max=200)])
+    address = StringField("Address", render_kw={'disabled': True}, validators=[Length(max=200)])
     date_of_birth = DateField("Date of Birth", format='%Y-%m-%d', validators=[DataRequired()])
     height = DecimalField("Height (in cm)", validators=[DataRequired(), NumberRange(min=0)])
     weight = DecimalField("Weight (in kg)", validators=[DataRequired(), NumberRange(min=0)])
     gender = SelectField(
         "Gender",
         choices=[("", "Select gender"), ("male", "Male"), ("female", "Female"), ("other", "Other")],
+        validators=[DataRequired()]
+    )
+    state = SelectField(
+        "State",
+        choices=[
+            ("", "Select state"),
+            ("AL", "Alabama"),
+            ("AK", "Alaska"),
+            ("AZ", "Arizona"),
+            ("AR", "Arkansas"),
+            ("CA", "California"),
+            ("CO", "Colorado"),
+            ("CT", "Connecticut"),
+            ("DE", "Delaware"),
+            ("FL", "Florida"),
+            ("GA", "Georgia"),
+            ("HI", "Hawaii"),
+            ("ID", "Idaho"),
+            ("IL", "Illinois"),
+            ("IN", "Indiana"),
+            ("IA", "Iowa"),
+            ("KS", "Kansas"),
+            ("KY", "Kentucky"),
+            ("LA", "Louisiana"),
+            ("ME", "Maine"),
+            ("MD", "Maryland"),
+            ("MA", "Massachusetts"),
+            ("MI", "Michigan"),
+            ("MN", "Minnesota"),
+            ("MS", "Mississippi"),
+            ("MO", "Missouri"),
+            ("MT", "Montana"),
+            ("NE", "Nebraska"),
+            ("NV", "Nevada"),
+            ("NH", "New Hampshire"),
+            ("NJ", "New Jersey"),
+            ("NM", "New Mexico"),
+            ("NY", "New York"),
+            ("NC", "North Carolina"),
+            ("ND", "North Dakota"),
+            ("OH", "Ohio"),
+            ("OK", "Oklahoma"),
+            ("OR", "Oregon"),
+            ("PA", "Pennsylvania"),
+            ("RI", "Rhode Island"),
+            ("SC", "South Carolina"),
+            ("SD", "South Dakota"),
+            ("TN", "Tennessee"),
+            ("TX", "Texas"),
+            ("UT", "Utah"),
+            ("VT", "Vermont"),
+            ("VA", "Virginia"),
+            ("WA", "Washington"),
+            ("WV", "West Virginia"),
+            ("WI", "Wisconsin"),
+            ("WY", "Wyoming")
+        ],
         validators=[DataRequired()]
     )
     city = StringField("City", validators=[DataRequired(), Length(max=100)])

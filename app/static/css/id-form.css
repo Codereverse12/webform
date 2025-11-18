@@ -37,8 +37,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     max-height: none;
     overflow: visible;
-    width: 800px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 800px;
 }
 
 /* ID Form Section */
@@ -52,6 +52,11 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-bottom: 20px;
+}
+
+/* Allow grid children to shrink to avoid overflow */
+.id-form-row > * {
+    min-width: 0;
 }
 
 /* ID Form Field */
@@ -139,6 +144,12 @@
     background-position: right 12px center;
     background-size: 20px;
     padding-right: 40px;
+}
+
+/* Ensure the form itself never exceeds container width */
+.id-form-wrapper form {
+    width: 100%;
+    max-width: 100%;
 }
 
 .id-form-select:focus {
@@ -244,6 +255,12 @@
     .id-form-card {
         padding: 30px 35px;
     }
+
+    /* Make multi-field rows easier to read on tablets */
+    .id-form-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -256,7 +273,7 @@
     }
 
     .id-form-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 15px;
     }
 
@@ -264,5 +281,57 @@
         width: 100%;
         min-width: auto;
     }
+
+    /* Improve file upload layout and image preview scaling */
+    .file-upload-wrapper {
+        flex-wrap: wrap;
+    }
+    .file-upload-label {
+        margin-bottom: 6px;
+    }
+    .file-name {
+        font-size: 13px;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+    #image-preview {
+        max-width: 100% !important;
+        height: auto !important;
+    }
 }
 
+@media (max-width: 480px) {
+    .id-form-card {
+        padding: 20px 16px;
+        border-radius: 10px;
+    }
+    .id-form-label {
+        font-size: 13px;
+    }
+    .id-form-input,
+    .id-form-select,
+    .view-form-value {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    .file-upload-wrapper {
+        flex-wrap: wrap;
+    }
+    .file-upload-label {
+        margin-bottom: 6px;
+    }
+    .file-name {
+        font-size: 12px;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+    #image-preview {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    .id-form-submit-btn {
+        padding: 12px 20px;
+        font-size: 15px;
+        width: 100%;
+    }
+}

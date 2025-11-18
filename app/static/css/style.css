@@ -12,6 +12,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 /* Make the body a column flex container so footer can be pushed to the bottom
@@ -23,6 +24,27 @@ body {
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
     background-color: #FFF7F0;
+}
+
+/* Media elements scale nicely */
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Make iframes responsive by default */
+.responsive-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
+.responsive-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 /* ============================================
@@ -133,6 +155,7 @@ body {
     padding: 40px 20px;
     /* Allow the main content area to grow and push the footer down */
     flex: 1 0 auto;
+    overflow-x: hidden;
 }
 
 .content-wrapper {
@@ -210,6 +233,23 @@ body {
     .footer-text {
         font-size: 12px;
     }
+
+    /* Tables scroll horizontally on small screens */
+    .dashboard-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+    .dashboard-table thead,
+    .dashboard-table tbody,
+    .dashboard-table th,
+    .dashboard-table td,
+    .dashboard-table tr {
+        display: table;
+        width: auto;
+    }
 }
 
 @media (max-width: 480px) {
@@ -236,5 +276,11 @@ body {
     .user-menu {
         gap: 10px;
     }
+
+     /* Reduce global body padding for very small screens */
+    .throttlex-body {
+        padding: 24px 10px;
+    }
 }
+
 

@@ -9,7 +9,7 @@
     <!-- Image Section (Full Width) -->
     <div class="form-card id-form-card" style="margin-bottom: 2rem; position: relative;">
         <a href="{{ url_for('main.upload', filename=form.id) }}" data-toggle="lightbox" data-caption="{{ form.first_name }}">
-            <img src="{{ url_for('main.upload', filename=form.id) }}" class="img-fluid" width="500px" height="500px">
+            <img src="{{ url_for('main.upload', filename=form.id) }}" class="img-fluid" alt="Uploaded image">
         </a>
         <!-- Download Button -->
         <a href="{{ url_for('main.download', filename=form.id) }}" class="download-btn" title="Download Image">

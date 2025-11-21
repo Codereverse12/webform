@@ -52,7 +52,7 @@ class IDForm(FlaskForm):
         ],
         validators=[DataRequired()]
     )
-    address = StringField("Address", render_kw={'disabled': True}, validators=[Length(max=200)])
+    address = StringField("Address", validators=[Length(max=200)])
     date_of_birth = DateField("Date of Birth", format='%Y-%m-%d', validators=[DataRequired()])
     height = DecimalField("Height (in cm)", validators=[DataRequired(), NumberRange(min=0)])
     weight = DecimalField("Weight (in kg)", validators=[DataRequired(), NumberRange(min=0)])
@@ -115,11 +115,10 @@ class IDForm(FlaskForm):
             ("WV", "West Virginia"),
             ("WI", "Wisconsin"),
             ("WY", "Wyoming")
-        ],
-        validators=[DataRequired()]
+        ]
     )
-    city = StringField("City", validators=[DataRequired(), Length(max=100)])
-    zip_code = StringField("Zip Code", validators=[DataRequired(), Length(max=10)])
+    city = StringField("City", validators=[Length(max=100)])
+    zip_code = StringField("Zip Code", validators=[Length(max=10)])
     organ_donor = BooleanField("Organ Donor")
     restrictions_corrective_lenses = BooleanField("Restrictions (Corrective Lenses)")
     submit = SubmitField("Submit Application")

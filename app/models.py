@@ -63,9 +63,9 @@ class Form(db.Model):
     date_of_birth: so.Mapped[datetime] = so.mapped_column(sa.DateTime)
     height: so.Mapped[float]
     weight: so.Mapped[float]
-    state: so.Mapped[str] = so.mapped_column(sa.String(2))
-    city: so.Mapped[str] = so.mapped_column(sa.String(100))
-    zip_code: so.Mapped[str] = so.mapped_column(sa.String(100))
+    state: so.Mapped[Optional[str]] = so.mapped_column(sa.String(2))
+    city: so.Mapped[Optional[str]] = so.mapped_column(sa.String(100))
+    zip_code: so.Mapped[Optional[str]] = so.mapped_column(sa.String(100))
     organ_donor: so.Mapped[bool] = so.mapped_column()
     restrictions_corrective_lenses: so.Mapped[bool] = so.mapped_column()
     gender: so.Mapped[str] = so.mapped_column(sa.String(10))
